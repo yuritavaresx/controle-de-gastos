@@ -1,3 +1,4 @@
+import { CATEGORIAS } from "./tipos";
 import type { Categoria, Despesa } from "./tipos";
 
 export function descricaoCategoria(categoria: Categoria): string {
@@ -14,5 +15,23 @@ export function descricaoCategoria(categoria: Categoria): string {
 }
 
 export function matrizCategoriaMes(despesas: Despesa[]): number[][] {
-  throw new Error("não implementado");
+  const matriz: number[][] = [];
+
+  for (let i = 0; i < CATEGORIAS.length; i++) {
+    const linha: number[] = [];
+    for (let mes = 0; mes < 12; mes++) {
+      linha.push(0);
+    }
+    matriz.push(linha);
+  }
+
+  for (const despesa of despesas) {
+    for (let i = 0; i < CATEGORIAS.length; i++) {
+      if (CATEGORIAS[i] === despesa.categoria) {
+        matriz[i][despesa.mes - 1] += despesa.valor;
+      }
+    }
+  }
+
+  return matriz;
 }
