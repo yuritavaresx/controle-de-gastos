@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { totalGasto, maiorDespesa, despesasDaCategoria, adicionarDespesa } from "./despesas";
+import { totalGasto, maiorDespesa, despesasDaCategoria, adicionarDespesa, removerDespesa } from "./despesas";
 import type { Despesa } from "./tipos";
 
 describe("totalGasto", () => {
@@ -77,5 +77,34 @@ describe("adicionarDespesa", () => {
   it("lança erro se o mês for maior que 12", () => {
     const invalida: Despesa = { id: "4", descricao: "Teste", valor: 10, categoria: "lazer", mes: 13 };
     expect(() => adicionarDespesa([], invalida)).toThrow("mes");
+  });
+});
+
+
+describe("removerDespesa", () => {
+  it("retorna um novo array sem a despesa com o id informado", () => {
+    const despesas: Despesa[] = [
+      { id: "1", descricao: "Almoço", valor: 30, categoria: "alimentacao", mes: 1 },
+      { id: "2", descricao: "Ônibus", valor: 10, categoria: "transporte", mes: 1 },
+    ];
+    expect(removerDespesa(despesas, "1")).toEqual([despesas[1]]);
+  });
+
+  it("retorna uma cópia igual se o id não existir", () => {
+    const despesas: Despesa[] = [
+      { id: "1", descricao: "Almoço", valor: 30, categoria: "alimentacao", mes: 1 },
+    ];
+    const resultado = removerDespesa(despesas, "999");
+    expect(resultado).toEqual(despesas);
+    expect(resultado).not.toBe(despesas);
+  });
+
+  it("não altera o array original", () => {
+    const despesas: Despesa[] = [
+      { id: "1", descricao: "Almoço", valor: 30, categoria: "alimentacao", mes: 1 },
+      { id: "2", descricao: "Ônibus", valor: 10, categoria: "transporte", mes: 1 },
+    ];
+    removerDespesa(despesas, "1");
+    expect(despesas).toHaveLength(2);
   });
 });

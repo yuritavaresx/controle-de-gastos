@@ -37,3 +37,13 @@ export function adicionarDespesa(despesas: Despesa[], nova: Despesa): Despesa[] 
   }
   return [...despesas, nova];
 }
+
+export function removerDespesa(despesas: Despesa[], id: string): Despesa[] {
+  const resultado: Despesa[] = [];
+  for (const despesa of despesas) {
+    if (despesa.id !== id) {
+      resultado.push(despesa);
+    }
+  }
+  return resultado;
+}
