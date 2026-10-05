@@ -9,5 +9,11 @@ export function totalGasto(despesas: Despesa[]): number {
 }
 
 export function maiorDespesa(despesas: Despesa[]): Despesa | undefined {
-  throw new Error("não implementado");
+  let maior: Despesa | undefined = undefined;
+  for (const despesa of despesas) {
+    if (maior === undefined || despesa.valor > maior.valor) {
+      maior = despesa;
+    }
+  }
+  return maior;
 }
