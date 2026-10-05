@@ -45,4 +45,4 @@ Fluxo seguido em cada função: escrevi a assinatura e os testes, vi os testes f
 
 ## Reflexão
 
-(cole aqui a sua reflexão: veja o Passo 3)
+Em todas as funções a implementação passou nos testes de primeira, então não precisei ajustar o código gerado. Mesmo assim li cada uma procurando pontos fracos: em maiorDespesa, o empate devolve a primeira despesa; em removerDespesa, ids repetidos seriam removidos juntos; em matrizCategoriaMes, um mês fora de 1 a 12 quebraria a matriz, mas adicionarDespesa já barra isso. Por desconfiar desses pontos, acrescentei o teste de empate em maiorDespesa e o teste de mês 0 em adicionarDespesa. O erro mais real do processo foi meu: ao escrever o teste de despesasDaCategoria contei as posições do array a partir de 1 e não de 0, e só corrigi na revisão. Aprendi que os testes também precisam ser revisados, não só o código gerado pela IA.
