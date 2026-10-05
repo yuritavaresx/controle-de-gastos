@@ -1,4 +1,4 @@
-import type { Despesa } from "./tipos";
+import type { Despesa, Categoria } from "./tipos";
 
 export function totalGasto(despesas: Despesa[]): number {
   let total = 0;
@@ -16,4 +16,8 @@ export function maiorDespesa(despesas: Despesa[]): Despesa | undefined {
     }
   }
   return maior;
+}
+
+export function despesasDaCategoria(despesas: Despesa[], categoria: Categoria): Despesa[] {
+  throw new Error("não implementado");
 }
