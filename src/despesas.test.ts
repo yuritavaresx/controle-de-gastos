@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { totalGasto, maiorDespesa, despesasDaCategoria } from "./despesas";
+import { totalGasto, maiorDespesa, despesasDaCategoria, adicionarDespesa } from "./despesas";
 import type { Despesa } from "./tipos";
 
 describe("totalGasto", () => {
@@ -46,5 +46,36 @@ describe("despesasDaCategoria", () => {
       { id: "1", descricao: "Almoço", valor: 30, categoria: "alimentacao", mes: 1 },
     ];
     expect(despesasDaCategoria(despesas, "lazer")).toEqual([]);
+  });
+});
+
+
+describe("adicionarDespesa", () => {
+  it("retorna um novo array com a despesa adicionada", () => {
+    const despesas: Despesa[] = [
+      { id: "1", descricao: "Almoço", valor: 30, categoria: "alimentacao", mes: 1 },
+    ];
+    const nova: Despesa = { id: "2", descricao: "Ônibus", valor: 10, categoria: "transporte", mes: 1 };
+    expect(adicionarDespesa(despesas, nova)).toEqual([despesas[0], nova]);
+  });
+
+  it("não altera o array original", () => {
+    // ESCREVA AQUI UMA FRASE: por que a função não pode alterar o array recebido?
+    const despesas: Despesa[] = [
+      { id: "1", descricao: "Almoço", valor: 30, categoria: "alimentacao", mes: 1 },
+    ];
+    const nova: Despesa = { id: "2", descricao: "Ônibus", valor: 10, categoria: "transporte", mes: 1 };
+    adicionarDespesa(despesas, nova);
+    expect(despesas).toHaveLength(1);
+  });
+
+  it("lança erro se o valor for zero", () => {
+    const invalida: Despesa = { id: "3", descricao: "Teste", valor: 0, categoria: "lazer", mes: 1 };
+    expect(() => adicionarDespesa([], invalida)).toThrow("valor");
+  });
+
+  it("lança erro se o mês for maior que 12", () => {
+    const invalida: Despesa = { id: "4", descricao: "Teste", valor: 10, categoria: "lazer", mes: 13 };
+    expect(() => adicionarDespesa([], invalida)).toThrow("mes");
   });
 });

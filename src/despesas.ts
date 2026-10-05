@@ -27,3 +27,7 @@ export function despesasDaCategoria(despesas: Despesa[], categoria: Categoria): 
   }
   return resultado;
 }
+
+export function adicionarDespesa(despesas: Despesa[], nova: Despesa): Despesa[] {
+  throw new Error("não implementado");
+}
