@@ -29,6 +29,14 @@ describe("maiorDespesa", () => {
   it("retorna undefined para lista vazia", () => {
     expect(maiorDespesa([])).toBeUndefined();
   });
+
+    it("em caso de empate, retorna a primeira despesa", () => {
+    const despesas: Despesa[] = [
+      { id: "1", descricao: "Almoço", valor: 50, categoria: "alimentacao", mes: 1 },
+      { id: "2", descricao: "Cinema", valor: 50, categoria: "lazer", mes: 1 },
+    ];
+    expect(maiorDespesa(despesas)).toEqual(despesas[0]);
+  });
 });
 
 describe("despesasDaCategoria", () => {
@@ -76,6 +84,11 @@ describe("adicionarDespesa", () => {
 
   it("lança erro se o mês for maior que 12", () => {
     const invalida: Despesa = { id: "4", descricao: "Teste", valor: 10, categoria: "lazer", mes: 13 };
+    expect(() => adicionarDespesa([], invalida)).toThrow("mes");
+  });
+
+    it("lança erro se o mês for menor que 1", () => {
+    const invalida: Despesa = { id: "5", descricao: "Teste", valor: 10, categoria: "lazer", mes: 0 };
     expect(() => adicionarDespesa([], invalida)).toThrow("mes");
   });
 });
