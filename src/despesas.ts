@@ -19,5 +19,11 @@ export function maiorDespesa(despesas: Despesa[]): Despesa | undefined {
 }
 
 export function despesasDaCategoria(despesas: Despesa[], categoria: Categoria): Despesa[] {
-  throw new Error("não implementado");
+  const resultado: Despesa[] = [];
+  for (const despesa of despesas) {
+    if (despesa.categoria === categoria) {
+      resultado.push(despesa);
+    }
+  }
+  return resultado;
 }
