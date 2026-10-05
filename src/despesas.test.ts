@@ -60,7 +60,7 @@ describe("adicionarDespesa", () => {
   });
 
   it("não altera o array original", () => {
-    // ESCREVA AQUI UMA FRASE: por que a função não pode alterar o array recebido?
+   // Retorna um array novo para que quem chamou a função não tenha a sua lista original modificada por surpresa.
     const despesas: Despesa[] = [
       { id: "1", descricao: "Almoço", valor: 30, categoria: "alimentacao", mes: 1 },
     ];
