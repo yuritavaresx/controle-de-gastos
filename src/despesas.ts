@@ -7,3 +7,7 @@ export function totalGasto(despesas: Despesa[]): number {
   }
   return total;
 }
+
+export function maiorDespesa(despesas: Despesa[]): Despesa | undefined {
+  throw new Error("não implementado");
+}
